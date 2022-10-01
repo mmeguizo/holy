@@ -149,8 +149,7 @@ a:hover, a:active, a:focus {
 }
 
 .overlay {
-  background: #304352;
-  opacity: 0.9;
+  background-image: url("") repeat 0 0;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -158,8 +157,18 @@ a:hover, a:active, a:focus {
   left: 0;
   right: 0;
 }
-
-
+.aboutAdoptionTitle{
+  color: #fff;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 55px;
+}
+.aboutAdoption{
+    color: #fff;
+    font-size: 47px;
+    font-weight: 700;
+    line-height: 55px;
+}
 
 /*---------------------------------------
     Pre Loader Style              
@@ -380,7 +389,6 @@ a:hover, a:active, a:focus {
 }
 
 #about .about-img img {
-  border: 8px solid #ffffff;
   position: absolute;
   left: -120px;
   bottom: -325px;
