@@ -35,7 +35,7 @@
                         
                     }else{
 
-                        $query = "INSERT INTO `users`(`username`, `name`, `lastname`,`email`, `password`, `role`, `status`) VALUES ('". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['email']."','". $_POST['password']."','users','active')";
+                        $query = "INSERT INTO `users`(`username`, `name`, `lastname`,`email`, `password`, `role`, `status`, `image`) VALUES ('". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['email']."','". $_POST['password']."','users','active','dummy.png')";
 
                         $registerUser = mysqli_query($connection, $query);
 
