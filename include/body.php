@@ -37,21 +37,9 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/Orphan/pages/admin/Users.php">
+                            <a href="/orphan/pages/admin/Users.php">
                                 <i class="material-icons">home</i>
                                 <span>User Manager</span>
-                            </a>
-                        </li>
-                        <?php 
-                           }
-                        ?>
-                        <?php 
-                            if ($_SESSION['role'] == 'users' ) {
-                        ?>
-                        <li>
-                            <a href="/Orphan/pages/admin/Users.php">
-                                <i class="material-icons">home</i>
-                                <span>Schedule visit</span>
                             </a>
                         </li>
                         <?php 
@@ -61,7 +49,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/Orphan/pages/admin/services.php">
+                            <a href="/orphan/pages/admin/services.php">
                                 <i class="material-icons">home</i>
                                 <span>Services</span>
                             </a>
@@ -73,7 +61,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/tes/pages/dean/dean.php">
+                            <a href="/orphan/pages/dean/dean.php">
                                 <i class="material-icons">home</i>
                                 <span>Orphan</span>
                             </a>
@@ -85,7 +73,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/tes/pages/dean/dean.php">
+                            <a href="/orphan/pages/dean/dean.php">
                                 <i class="material-icons">home</i>
                                 <span>Adopted</span>
                             </a>
@@ -97,7 +85,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/tes/pages/dean/dean.php">
+                            <a href="/orphan/pages/dean/dean.php">
                                 <i class="material-icons">home</i>
                                 <span>About</span>
                             </a>
