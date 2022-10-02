@@ -65,7 +65,7 @@
                                     if ($_SESSION['role'] === 'admin') {
                                             header("location: admin/Profile.php");
                                             die();
-                                    } elseif($_SESSION['role'] === 'Users') {
+                                    } elseif($_SESSION['role'] === 'users') {
                                              header("location: users/Profile.php");
                                     }else {
 
