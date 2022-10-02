@@ -131,7 +131,7 @@
         <div class="card">
             <div class="body">
                 <form id="sign_in" action="" method="POST">
-                    <div class="msg">Holy<br> <h6>Orphanage System</h6></div>
+                    <div class="msg">Sign up<br> <h6>Orphanage System</h6></div>
                     <div class="msg"></div>
                     <div class="msg"><img src="../images/chmsc.jpg" alt="" width="236" height="242" /></div>
                     <div class="msg">Sign Up to start your session</div>
