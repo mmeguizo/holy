@@ -98,7 +98,7 @@ include dirname($path) . "../include/body.php";
 	                                </li>
 	                            </div>
 	                        </a>
-	                        <a href="/Orphan/pages/admin/Orphan.php">
+	                        <a href="/Orphan/pages/admin/Foster.php">
 	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	                                <li role="presentation">
 	                                    <div class="info-box bg-cyan hover-expand-effect">
@@ -106,7 +106,7 @@ include dirname($path) . "../include/body.php";
 	                                            <i class="material-icons">face</i>
 	                                        </div>
 	                                        <div class="content">
-	                                            <div class="text">Orphan</div>
+	                                            <div class="text">Foster</div>
 	                                            <div class="number count-to" data-from="0" data-to="<?php 
 	                                                $sql = "SELECT role, COUNT(*) AS COUNT FROM `users` WHERE `role`= 'users'";
                                                     $counts = mysqli_query($connection,$sql);
