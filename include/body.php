@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'users' ) {
                         ?>
                         <li>
-                            <a href="/Orphan/pages/admin/Users.php">
+                            <a href="/Orphan/pages/users/services.php">
                                 <i class="material-icons">home</i>
                                 <span>Schedule visit</span>
                             </a>
