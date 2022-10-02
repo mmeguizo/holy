@@ -45,6 +45,18 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
+                        <?php 
+                            if ($_SESSION['role'] == 'users' ) {
+                        ?>
+                        <li>
+                            <a href="/Orphan/pages/admin/Users.php">
+                                <i class="material-icons">home</i>
+                                <span>Schedule visit</span>
+                            </a>
+                        </li>
+                        <?php 
+                           }
+                        ?>
                        <?php 
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
