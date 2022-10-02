@@ -37,7 +37,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/orphan/pages/admin/Users.php">
+                            <a href="/orphan/pages/admin/users.php">
                                 <i class="material-icons">home</i>
                                 <span>User Manager</span>
                             </a>
@@ -45,7 +45,6 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
-<<<<<<< HEAD
                         <?php 
                             if ($_SESSION['role'] == 'users' ) {
                         ?>
@@ -58,8 +57,6 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
-=======
->>>>>>> bf21e1df67f4aa8b0ad902f9c1f062a34d3722fe
                        <?php 
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
