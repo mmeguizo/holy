@@ -8,16 +8,12 @@
 
        if (isset($_POST['submit'])) {
            #echo "submit click";
-                $db_user_id = '';
-                $db_username = '';
-                $db_user_password = '';
-                $db_user_firstname = '';
-                $db_user_lastname = '';
-                $db_user_role = '';
-                $db_user_status = '';
-                $db_user_image = '';
+
 
                     $username = $_POST['username'];
+                    $name = $_POST['name'];
+                    $lastname = $_POST['lastname'];
+                    $email = $_POST['email'];
                     $password = $_POST['password'];
                     $username = trim($username);
                     $password = trim($password);
@@ -25,80 +21,45 @@
                     $username = mysqli_real_escape_string($connection, $username);
                     $password = mysqli_real_escape_string($connection, $password);
 
-                    $query = "SELECT * FROM users WHERE username = '{$username}' ";
-                    $select_user_query = mysqli_query($connection, $query);
-                    if(!$select_user_query) {
 
-                        die("QUERY FAILED". mysqli_error($connection));
+                    // $query = "SELECT * FROM users WHERE username = '{$username}' ";
+                    $checkDuplicateUsername = "SELECT * FROM `users` WHERE username ='$username'";
+                    $runcheckDuplicateUsername = mysqli_query($connection, $checkDuplicateUsername);
 
+                    
+                    if (mysqli_num_rows($runcheckDuplicateUsername) > 0){
+
+                        echo"<center><div class=\"alert alert-danger alert-dismissable\" style=\"width:28%;padding-top: 15px;margin-top: 14px;margin-bottom: 0px;padding-bottom: 9px;\">
+                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" style=\" width:30%;\">&times;</button>Username used
+                            </div></center>";
+                        
+                    }else{
+
+                        $query = "INSERT INTO `users`(`username`, `name`, `lastname`,`email`, `password`, `role`, `status`) VALUES ('". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['email']."','". $_POST['password']."','users','active')";
+
+                        $registerUser = mysqli_query($connection, $query);
+
+                        if($registerUser){
+                            echo"<center><div class=\"alert alert-success alert-dismissable\" style=\"width:28%;padding-top: 15px;margin-top: 14px;margin-bottom: 0px;padding-bottom: 9px;\">
+                            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" style=\" width:30%;\">&times;</button>Success
+                                </div></center>";
+                                header("location: index.php");
+                        }else{
+                            die("QUERY FAILED". mysqli_error($connection));
+                        }
                     }
-
-                    while($row = mysqli_fetch_assoc($select_user_query)) {
-                          
-                        $db_user_id = $row['id'];
-                        $db_username = $row['username'];
-                        $db_user_password = $row['password'];
-                        $db_user_firstname = $row['name'];
-                        $db_user_lastname = $row['lastname'];
-                        $db_user_role = $row['role'];
-                        $db_user_status = $row['status'];
-                        $db_user_image = $row['image'];
-                      
-                      } 
+    }
 
 
-                      if(!empty($username) && !empty($password)){
-
-                                if($username == $db_username && $password == $db_user_password &&  $db_user_status == 'active'){
-
-
-                                    $_SESSION['id'] = $db_user_id;
-                                    $_SESSION['username'] = $db_username;
-                                    $_SESSION['name'] = $db_user_firstname;
-                                    $_SESSION['password'] = $db_user_password;
-                                    $_SESSION['name'] = $db_user_firstname;
-                                    $_SESSION['lastname'] = $db_user_lastname;
-                                    $_SESSION['role'] = $db_user_role;
-                                    $_SESSION['status'] = $db_user_status;
-                                    $_SESSION['image'] = $db_user_image;
-
-                                    if ($_SESSION['role'] === 'admin') {
-                                            header("location: admin/Profile.php");
-                                            die();
-                                    } elseif($_SESSION['role'] === 'Users') {
-                                             header("location: users/Profile.php");
-                                    }else {
-
-                                         header("location:index.php");
-                                            die();
-                                    }
-                                }
-                                else{
-                                   
-
-                                    //echo "Invalid User....";
-
-
-                                  echo"<center><div class=\"alert alert-danger alert-dismissable\" style=\"width:28%;padding-top: 15px;margin-top: 14px;margin-bottom: 0px;padding-bottom: 9px;\">
-                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" style=\" width:30%;\">&times;</button>Invalid user / Inactive user
-                                    </div></center>";
-                                }
-                        }
-                        else{
-                            
-                           echo"<center><div class=\"alert alert-danger alert-dismissable\" style=\" width:28%;padding-top:30px;margin-top: 30px;\">
-                                <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" style=\" width:30%;\">&times;</button>Field Must not be empty..
-                                    </div></center>";
-                        }
+    
 
 
 
-
-       }
-
+       
 
 
-?>
+    ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -126,21 +87,46 @@
     <link href="../template/css/style.css" rel="stylesheet">
 </head>
 
-<body class="login-page">
-    <div class="login-box">
+<body class="signup-page">
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Orphan<b>System</b></a>
+            <small>Holy Orphanage</small>
+        </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" action="" method="POST">
-                    <div class="msg">Sign up<br> <h6>Orphanage System</h6></div>
-                    <div class="msg"></div>
-                    <div class="msg"><img src="../images/chmsc.jpg" alt="" width="236" height="242" /></div>
-                    <div class="msg">Sign Up to start your session</div>
+                <form id="sign_up" method="POST">
+                    <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="name" placeholder="name" required autofocus>
+                            <input type="text" class="form-control" name="username" placeholder=" Surname" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">account_circle</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">account_box</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -148,41 +134,13 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="lastname" placeholder="lastname" required>
+                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="email" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="password" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="password" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label>
-                        </div> -->
-                        <div class="col-xs-12">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit" name="submit">SIGN UP</button>
-                        </div>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect"  name="submit" type="submit">SIGN UP</button>
+
+                    <div class="m-t-25 m-b--5 align-center">
+                        <a href="http://localhost:8080/orphan/pages/index.php">You already have a membership?</a>
                     </div>
                 </form>
             </div>
