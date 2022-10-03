@@ -45,6 +45,7 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
+
                         <?php 
                             if ($_SESSION['role'] == 'users' ) {
                         ?>
@@ -57,6 +58,7 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
+
                        <?php 
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
