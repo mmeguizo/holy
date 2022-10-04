@@ -37,7 +37,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/orphan/pages/admin/Users.php">
+                            <a href="/orphan/pages/admin/users.php">
                                 <i class="material-icons">home</i>
                                 <span>User Manager</span>
                             </a>
