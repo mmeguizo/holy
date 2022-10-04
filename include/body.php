@@ -45,12 +45,11 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
-
                         <?php 
                             if ($_SESSION['role'] == 'users' ) {
                         ?>
                         <li>
-                            <a href="/Orphan/pages/users/booking_approve.php">
+                            <a href="/orphan/pages/users/booking_approve.php">
                                 <i class="material-icons">home</i>
                                 <span>Schedule visit</span>
                             </a>
@@ -58,7 +57,6 @@ while($row = mysqli_fetch_assoc($res)){
                         <?php 
                            }
                         ?>
-
                        <?php 
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
@@ -77,7 +75,7 @@ while($row = mysqli_fetch_assoc($res)){
                         <li>
                             <a href="/orphan/pages/dean/dean.php">
                                 <i class="material-icons">home</i>
-                                <span>Orphan</span>
+                                <span>orphan</span>
                             </a>
                         </li>
                         <?php 
