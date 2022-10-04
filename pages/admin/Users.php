@@ -1,10 +1,5 @@
-
-
 <?php 
 $path = "C:/xampp/htdocs/orphan/pages";
-
-
-
 ?>
 
 <?php 
@@ -83,7 +78,7 @@ include dirname($path) . "../include/body.php";
 	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                 <div class="row clearfix">
 	                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
-	                        <a href="/Orphan/pages/admin/Users.php" data-toggle="tab">
+	                        <a href="/orphan/pages/admin/Users.php" data-toggle="tab">
 	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	                                <li role="presentation" class="active">
 	                                    <div class="info-box bg-pink hover-expand-effect">
@@ -103,7 +98,7 @@ include dirname($path) . "../include/body.php";
 	                                </li>
 	                            </div>
 	                        </a>
-	                        <a href="/Orphan/pages/admin/Foster.php">
+	                        <a href="/orphan/pages/admin/Foster.php">
 	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 	                                <li role="presentation">
 	                                    <div class="info-box bg-cyan hover-expand-effect">
@@ -117,27 +112,6 @@ include dirname($path) . "../include/body.php";
                                                     $counts = mysqli_query($connection,$sql);
                                                     $row = mysqli_fetch_assoc($counts);
                                                     echo $row['COUNT'];?>" data-speed="1000" data-fresh-interval="20">
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </li>
-	                            </div>
-	                        </a>
-	                        <a href="/tes/pages/dean/profileteacher.php">
-	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                                <li role="presentation">
-	                                    <div class="info-box bg-light-green hover-expand-effect">
-	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
-	                                        </div>
-	                                        <div class="content">
-	                                            <div class="text">Kids</div>
-	                                            <div class="number count-to" data-from="0" data-to="<?php 
-	                                                #$sql = "SELECT COUNT(`id`) FROM `users` WHERE `role` = \'student\'";
-	                                                $sql = "SELECT COUNT(`id`) AS COUNT FROM `users` WHERE `role` = 'teacher' ";
-	                                                $counts = mysqli_query($connection,$sql);
-	                                                $row = mysqli_fetch_assoc($counts);
-	                                                echo $row['COUNT'];?>" data-speed="1000" data-fresh-interval="20">
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -242,7 +216,7 @@ include dirname($path) . "../include/body.php";
 			                            $del = $_GET['delete'];
 			                            $insersession = "UPDATE `users` SET `status`='inactive' WHERE `id`= {$del}";
 			                            $resultinsersession = mysqli_query($connection,$insersession);
-			                            header("Location:/Orphan/pages/admin/Users.php");
+			                            header("Location:/orphan/pages/admin/Users.php");
 			                        }
 			                     ?>
 			                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -262,7 +236,7 @@ include dirname($path) . "../include/body.php";
                                          while($row = mysqli_fetch_assoc($res)){
                                          ?>
                                         <tr> 
-                                            <td><a href="/Orphan/pages/admin/Users.php?id=<?php  echo $row['id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&password=<?php  echo $row['password']; ?>"><?php  echo $row['id']; ?></a></td>
+                                            <td><a href="/orphan/pages/admin/Users.php?id=<?php  echo $row['id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&password=<?php  echo $row['password']; ?>"><?php  echo $row['id']; ?></a></td>
                                             <td><?php  echo $row['username']; ?></td>
                                             <td><?php  echo $row['name']; ?></td>
                                             <td><?php  echo $row['lastname']; ?></td>
@@ -287,4 +261,5 @@ include dirname($path) . "../include/body.php";
 <?php 
 //include "admin_includes/header.php";
 include dirname($path) . "../include/footer.php";
+
 ?>

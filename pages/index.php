@@ -63,8 +63,7 @@
                                     $_SESSION['image'] = $db_user_image;
 
                                     if ($_SESSION['role'] === 'admin') {
-
-                                        header("location: admin/Profile.php");
+                                            header("location: admin/Profile.php");
                                             die();
                                     } elseif($_SESSION['role'] === 'users') {
                                              header("location: users/Profile.php");
@@ -132,7 +131,7 @@
         <div class="card">
             <div class="body">
                 <form id="sign_in" action="" method="POST">
-                    <div class="msg">Carlos Hilado Memorial State College <br> <h6>Orphanage System</h6></div>
+                    <div class="msg">Carlos Hilado Memorial State College <br> <h6>orphanage System</h6></div>
                     <div class="msg"></div>
                     <div class="msg"><img src="../images/chmsc.jpg" alt="" width="236" height="242" /></div>
                     <div class="msg">Sign in to start your session</div>
