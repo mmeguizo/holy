@@ -21,18 +21,32 @@ include dirname($path) . "../include/body.php";
 <?php
     $status = "";
     if(isset($_POST['add'])){
-        $user = $_POST['username'];
-        mysqli_query($connection,"DELETE FROM users WHERE id ='".$_POST['id']."'");
-        $query = "SELECT * FROM `users` WHERE username ='$user'";
-        $add = "INSERT INTO `users`(`id`, `username`, `name`, `lastname`, `password`, `role`, `status`) VALUES ('". $_POST['id']."','". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['password']."','users','". $_POST['status']."')";
-        mysqli_query($connection,$add);
-        $noti = "Record Add Successfully";
-        echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        }
-
+		$email_selection = "SELECT * FROM `users` WHERE `id`= '". $_POST['id']."'";
+		$email_row_result = mysqli_query($connection,$email_selection);
+		while($row_email_selection = mysqli_fetch_assoc($email_row_result)){
+			if($row_email_selection['email'] == $_POST['email']){
+				$noti = "Duplicate email";
+        	echo '<p style="color:#2cb90a;">'.$noti.'</p>';
+		}else{
+			if($row_email_selection['id'] == $_POST['id']){
+				$user = $_POST['username'];
+				$add = "INSERT INTO `users`(`username`, `name`, `lastname`, `email`, `password`, `role`, `status`, `image`) VALUES ('". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['email']."','". $_POST['password']."','users','". $_POST['status']."','')";
+				mysqli_query($connection,$add);
+				$noti = "Record Add Successfully";
+				echo '<p style="color:#2cb90a;">'.$noti.'</p>';
+			}else{
+				$add = "INSERT INTO `users`(`id`, `username`, `name`, `lastname`, `email`, `password`, `role`, `status`, `image`) VALUES ('". $_POST['id']."','". $_POST['username']."','". $_POST['name']."','". $_POST['lastname']."','". $_POST['email']."','". $_POST['password']."','users','". $_POST['status']."','')";
+				mysqli_query($connection,$add);
+				$noti = "Record Add Successfully";
+				echo '<p style="color:#2cb90a;">'.$noti.'</p>';
+			}
+		}
+	}
+}
+	
     if (isset($_POST['update'])) {
 
-       $updatedata = "UPDATE `users` SET 
+       echo $updatedata = "UPDATE `users` SET 
 
        `id`='".$_POST['id']."',
 
@@ -41,6 +55,8 @@ include dirname($path) . "../include/body.php";
        `name`='".$_POST['name']."',
 
        `lastname`='".$_POST['lastname']."',
+
+	   `email`='".$_POST['email']."',
 
        `password`='".$_POST['password']."',
 
@@ -118,27 +134,6 @@ include dirname($path) . "../include/body.php";
 	                                </li>
 	                            </div>
 	                        </a>
-	                        <a href="/orphan/pages/dean/profileteacher.php">
-	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                                <li role="presentation">
-	                                    <div class="info-box bg-light-green hover-expand-effect">
-	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
-	                                        </div>
-	                                        <div class="content">
-	                                            <div class="text">Kids</div>
-	                                            <div class="number count-to" data-from="0" data-to="<?php 
-	                                                #$sql = "SELECT COUNT(`id`) FROM `users` WHERE `role` = \'student\'";
-	                                                $sql = "SELECT COUNT(`id`) AS COUNT FROM `users` WHERE `role` = 'teacher' ";
-	                                                $counts = mysqli_query($connection,$sql);
-	                                                $row = mysqli_fetch_assoc($counts);
-	                                                echo $row['COUNT'];?>" data-speed="1000" data-fresh-interval="20">
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </li>
-	                            </div>
-	                        </a>
 	                    </ul>
 	                </div>
 	            </div>
@@ -153,14 +148,10 @@ include dirname($path) . "../include/body.php";
 
 			            <div class="body">
 			                <form id="form_validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-			                    <div class="form-group form-float">
-			                         <div class="form-line focused">
-			                            <input type="text" class="form-control" name="id" value="<?php echo $_GET['id']; ?>" required>
-			                            <label class="form-label">id</label>
-			                        </div>
-			                    </div>
+			                    
 			                    <div class="form-group form-float">
 			                        <div class="form-line focused">
+										<input type="text"name="id" value="<?php echo $_GET['id']; ?>" hidden>
 			                            <input type="text" class="form-control" name="username" value="<?php echo $_GET['username']; ?>" required>
 			                            <label class="form-label">username</label>
 			                        </div>
@@ -175,6 +166,12 @@ include dirname($path) . "../include/body.php";
 			                        <div class="form-line focused">
 			                            <input type="text" class="form-control" name="lastname" value="<?php echo $_GET['lastname']; ?>" required>
 			                            <label class="form-label">lastname</label>
+			                        </div>
+			                    </div>
+								<div class="form-group form-float">
+			                        <div class="form-line focused">
+			                            <input type="text" class="form-control" name="email" value="<?php echo $_GET['email']; ?>" required>
+			                            <label class="form-label">Email</label>
 			                        </div>
 			                    </div>
 			                    <div class="form-group form-float">
@@ -247,6 +244,7 @@ include dirname($path) . "../include/body.php";
                                             <th>Username</th>
                                             <th>Name</th>
                                             <th>Lastname</th>
+											<th>email</th>
                                             <th>Password</th>
                                             <th>Status</th>
 
@@ -257,10 +255,11 @@ include dirname($path) . "../include/body.php";
                                          while($row = mysqli_fetch_assoc($res)){
                                          ?>
                                         <tr> 
-                                            <td><a href="/orphan/pages/admin/orphan.php?id=<?php  echo $row['id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&password=<?php  echo $row['password']; ?>"><?php  echo $row['id']; ?></a></td>
+                                            <td><a href="/orphan/pages/admin/orphan.php?id=<?php  echo $row['id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&email=<?php  echo $row['email']; ?>&password=<?php  echo $row['password']; ?>"><?php  echo $row['id']; ?></a></td>
                                             <td><?php  echo $row['username']; ?></td>
                                             <td><?php  echo $row['name']; ?></td>
                                             <td><?php  echo $row['lastname']; ?></td>
+											<td><?php  echo $row['email']; ?></td>
                                             <td><?php  echo $row['password']; ?></td>
                                             <td><?php  echo $row['status']; ?></td>
                                         </tr>

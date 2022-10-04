@@ -91,9 +91,9 @@ if(isset($_POST['add'])){
 	            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                 <div class="row clearfix">
 	                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
-	                        <a href="/orphan/pages/admin/booking_approve.php" data-toggle="tab">
+	                        <a href="/orphan/pages/admin/booking_approve.php">
 	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                                <li role="presentation" class="active">
+	                                <li role="presentation">
 	                                    <div class="info-box bg-light-green hover-expand-effect">
 	                                        <div class="icon ">
 	                                            <i class="material-icons">face</i>
@@ -151,9 +151,9 @@ if(isset($_POST['add'])){
 	                                </li>
 	                            </div>
 	                        </a>
-                            <a href="/orphan/pages/admin/booking_history.php">
+                            <a href="/orphan/pages/admin/booking_history.php" data-toggle="tab">
 	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                                <li role="presentation">
+	                                <li role="presentation"  class="active">
 	                                    <div class="info-box bg-blue-grey hover-expand-effect">
 	                                        <div class="icon ">
 	                                            <i class="material-icons">face</i>
@@ -259,7 +259,7 @@ if(isset($_POST['add'])){
 			            <div class="body">
 			                <div class="table-responsive">
 			                	<?php 
-			                        $sql  = "SELECT * FROM services where `status` = 'approve'";
+			                        $sql  = "SELECT * FROM services";
 			                        $res = mysqli_query($connection,$sql);
 			                     ?>
 			                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -280,7 +280,7 @@ if(isset($_POST['add'])){
                                          while($row = mysqli_fetch_assoc($res)){
                                          ?>
                                         <tr> 
-                                            <td><a href="/orphan/pages/admin/booking_approve.php?id=<?php  echo $row['user_id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&date=<?php  echo $row['date']; ?>&time=<?php  echo $row['time']; ?>&purposes=<?php  echo $row['purposes']; ?>"><?php  echo $row['user_id']; ?></a></td>
+                                            <td><a href="/orphan/pages/admin/booking_approve.php?user_id=<?php  echo $row['user_id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&date=<?php  echo $row['date']; ?>&time=<?php  echo $row['time']; ?>&purposes=<?php  echo $row['purposes']; ?>"><?php  echo $row['user_id']; ?></a></td>
                                             <td><?php  echo $row['name']; ?></td>
                                             <td><?php  echo $row['lastname']; ?></td>
 											<td><?php  echo $row['date']; ?></td>

@@ -25,10 +25,13 @@ $res = mysqli_query($connection,$status_addition);
 $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
-          $add = "INSERT INTO `services`(`user_id`, `date`, `purposes`, `status`) VALUES  (
+          echo $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `purposes`, `count_status`, `status`) VALUES   (
 				'".$_SESSION['id']."',
+				'".$_SESSION['name']."',
+				'".$_SESSION['lastname']."',
 				'".$_POST['date']."',
 				'".$_POST['purposes']."',
+				'1',
 				'pending'
 				)";
             mysqli_query($connection,$add);
