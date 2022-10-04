@@ -63,7 +63,8 @@
                                     $_SESSION['image'] = $db_user_image;
 
                                     if ($_SESSION['role'] === 'admin') {
-                                            header("location: admin/Profile.php");
+
+                                        header("location: admin/Profile.php");
                                             die();
                                     } elseif($_SESSION['role'] === 'users') {
                                              header("location: users/Profile.php");
