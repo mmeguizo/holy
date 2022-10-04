@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'users' ) {
                         ?>
                         <li>
-                            <a href="/Orphan/pages/users/services.php">
+                            <a href="/Orphan/pages/users/booking_approve.php">
                                 <i class="material-icons">home</i>
                                 <span>Schedule visit</span>
                             </a>
@@ -61,9 +61,9 @@ while($row = mysqli_fetch_assoc($res)){
                             if ($_SESSION['role'] == 'admin' ) {
                         ?>
                         <li>
-                            <a href="/orphan/pages/admin/services.php">
+                            <a href="/orphan/pages/admin/booking_approve.php">
                                 <i class="material-icons">home</i>
-                                <span>Services</span>
+                                <span>Booking Manager</span>
                             </a>
                         </li>
                         <?php 

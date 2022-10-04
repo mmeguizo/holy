@@ -208,7 +208,7 @@ include dirname($path) . "../include/body.php";
                                                           <label for="post_image">Image</label> <br>
                                                           <img src="../../images/<?= $row['image'] ?>" id="blah" width=100>
                                                           <!-- <input type="file"  name="image"> -->
-                                                          <input type="file" name="image" value="<?= $row['image'] ?>" onchange="readURL(this);"  >
+                                                          <input type="file" name="image"  onchange="readURL(this);"  >
                                                         </div> 
                                                     </div>                                              
                                                     <div class="row clearfix">
