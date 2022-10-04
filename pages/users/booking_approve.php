@@ -81,11 +81,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation" class="active">
 	                                    <div class="info-box bg-light-green hover-expand-effect">
 	                                        <div class="icon ">
-<<<<<<< HEAD
 	                                            <i class="material-icons">face</i>
-=======
-	                                            <i class="material-icons">check</i>
->>>>>>> c45b4fe26e159b1b71940db7d6afd4101f9da7fc
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Approve</div>
@@ -105,11 +101,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-cyan hover-expand-effect">
 	                                        <div class="icon ">
-<<<<<<< HEAD
 	                                            <i class="material-icons">face</i>
-=======
-	                                            <i class="material-icons">access_time</i>
->>>>>>> c45b4fe26e159b1b71940db7d6afd4101f9da7fc
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Pending</div>
@@ -129,11 +121,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-deep-orange hover-expand-effect">
 	                                        <div class="icon ">
-<<<<<<< HEAD
 	                                            <i class="material-icons">face</i>
-=======
-	                                            <i class="material-icons">block</i>
->>>>>>> c45b4fe26e159b1b71940db7d6afd4101f9da7fc
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Cancelled</div>
@@ -153,11 +141,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-blue-grey hover-expand-effect">
 	                                        <div class="icon ">
-<<<<<<< HEAD
 	                                            <i class="material-icons">face</i>
-=======
-	                                            <i class="material-icons">history</i>
->>>>>>> c45b4fe26e159b1b71940db7d6afd4101f9da7fc
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Visit History</div>

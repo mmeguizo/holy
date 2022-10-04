@@ -261,4 +261,5 @@ include dirname($path) . "../include/body.php";
 <?php 
 //include "admin_includes/header.php";
 include dirname($path) . "../include/footer.php";
+
 ?>
