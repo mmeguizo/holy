@@ -24,12 +24,11 @@ $res = mysqli_query($connection,$status_addition);
 $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
-          $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `time`, `purposes`, `count_status`, `status`) VALUES  (
+          $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `purposes`, `count_status`, `status`) VALUES  (
 				'".$_POST['user_id']."',
 				'".$_POST['name']."',
 				'".$_POST['lastname']."',
 				'".$_POST['date']."',
-				'".$_POST['time']."',
 				'".$_POST['purposes']."',
 				'1',
 				'".$_POST['status']."'
@@ -46,23 +45,23 @@ if(isset($_POST['add'])){
 ?>
 <?php
     if (isset($_POST['update'])) {
-      $updatedata = "UPDATE `services` SET 
+       $updatedata = "UPDATE `services` SET 
 	   `user_id`='".$_POST['user_id']."',
 	   `name`='".$_POST['name']."',
 	   `lastname`='".$_POST['lastname']."',
 	   `date`='".$_POST['date']."',
-	   `time`='".$_POST['time']."',
 	   `purposes`='".$_POST['purposes']."',
 	   `count_status`='".$_POST['count_status']."',
 	   `status`='".$_POST['status']."'
-       WHERE `user_id`= '".$_POST['user_id']."'";
+
+	   WHERE `id`= '".$_POST['id']."' and `user_id`= '".$_POST['user_id']."'";
        mysqli_query($connection,$updatedata) or die(mysqli_error());
        
        $noti = "Record Updated Successfully";
        echo '<p style="color:#FF0000;">'.$noti.'</p>';
     }
     if (isset($_POST['delete_user'])) {
-       $updatedata = "DELETE FROM services WHERE `user_id`= '".$_POST['user_id']."'";
+       $updatedata = "DELETE FROM services WHERE `id`= '".$_POST['id']."' and `user_id`= '".$_POST['user_id']."'";
        mysqli_query($connection,$updatedata) or die(mysqli_error());
        $noti = "Booking has been deleted";
        echo '<p style="color:#FF0000;">'.$noti.'</p>';
@@ -180,7 +179,8 @@ if(isset($_POST['add'])){
 			                <form id="form_validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 			                    <div class="form-group form-float">
 			                         <div class="form-line focused">
-			                            <input type="text" class="form-control" name="user_id" value="<?php echo $_GET['id']; ?>" required>
+									 	<input type="text"  name="id" value="<?php echo $_GET['id']; ?>" hidden>
+			                            <input type="text" class="form-control" name="user_id" value="<?php echo $_GET['user_id']; ?>" required>
 			                            <label class="form-label">id</label>
 			                        </div>
 			                    </div>
@@ -202,19 +202,24 @@ if(isset($_POST['add'])){
 			                            <label class="form-label">Date</label>
 			                        </div>
 			                    </div>
-			                    <div class="form-group form-float">
-			                        <div class="form-line focused">
-			                            <input type="text" class="form-control" name="time" value="<?php echo $_GET['time']; ?>" required>
-			                            <label class="form-label">Time</label>
-			                        </div>
-			                    </div>
                                 <div class="form-group form-float">
                                 <label class="form-label">Visit Purposes</label>
 			                        <div class="form-line focused">
-                                    <select class="form-control show-tick" name="purposes">
-                                        <option value="">-- Purposes --</option>
-                                        <option value="adoption">Adoption</option>
-                                        <option value="visit">Visit</option>
+                                    <select class="form-control show-tick" name="purposes" value="<?php echo $_GET['purposes']; ?>">
+										<?php
+											if ($_GET['purposes'] === "Adoption"){
+												?>
+												<option value="adoption"><?php echo $_GET['purposes']; ?></option>
+                                        		<option value="visit">Visit</option>
+												<?php
+											}else{
+												?>
+												<option value="visit"><?php echo $_GET['purposes']; ?></option>
+                                        		<option value="adoption">Adoption</option>
+												<?php
+											}
+										?>
+                                        
                                     </select>
 			                        </div>
 			                    </div>
@@ -273,7 +278,7 @@ if(isset($_POST['add'])){
                                          while($row = mysqli_fetch_assoc($res)){
                                          ?>
                                         <tr> 
-                                            <td><a href="/orphan/pages/admin/booking_approve.php?id=<?php  echo $row['user_id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&date=<?php  echo $row['date']; ?>&time=<?php  echo $row['time']; ?>&purposes=<?php  echo $row['purposes']; ?>"><?php  echo $row['user_id']; ?></a></td>
+										<td><a href="/orphan/pages/admin/booking_pending.php?id=<?php  echo $row['id']; ?>&user_id=<?php  echo $row['user_id']; ?>&username=<?php  echo $row['username']; ?>&name=<?php  echo $row['name']; ?>&lastname=<?php  echo $row['lastname']; ?>&date=<?php  echo $row['date']; ?>&time=<?php  echo $row['time']; ?>&purposes=<?php  echo $row['purposes']; ?>"><?php  echo $row['user_id']; ?></a></td>
                                             <td><?php  echo $row['name']; ?></td>
                                             <td><?php  echo $row['lastname']; ?></td>
 											<td><?php  echo $row['date']; ?></td>
