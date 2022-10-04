@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-<?php 
+l<?php 
 $path = "C:/xampp/htdocs/orphan/pages";
 ?>
 
@@ -25,13 +25,6 @@ $res = mysqli_query($connection,$status_addition);
 $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
-        if($row['date'] === $_POST['date']){
-            $status = 1 + $row['count_status'];
-            $sql  = "UPDATE `services` SET `count_status`= $status WHERE `date`= '".$_POST['date']."'";
-            $res = mysqli_query($connection,$sql);
-            $noti = "Record Add 1 Successfully";
-            echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        }else{
           $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `time`, `purposes`, `count_status`, `status`) VALUES  (
 				'".$_POST['user_id']."',
 				'".$_POST['name']."',
@@ -45,7 +38,7 @@ if(isset($_POST['add'])){
             mysqli_query($connection,$add);
             $noti = "Record Add Successfully";
             echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        }
+        
     }else{
         $noti = "Visitation is fully loaded";
         echo '<p style="color:#2cb90a;">'.$noti.'</p>';
@@ -309,7 +302,7 @@ if(isset($_POST['add'])){
 include dirname($path) . "../include/footer.php";
 
 =======
-<?php 
+l<?php 
 $path = "C:/xampp/htdocs/orphan/pages";
 ?>
 
@@ -335,13 +328,6 @@ $res = mysqli_query($connection,$status_addition);
 $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
-        if($row['date'] === $_POST['date']){
-            $status = 1 + $row['count_status'];
-            $sql  = "UPDATE `services` SET `count_status`= $status WHERE `date`= '".$_POST['date']."'";
-            $res = mysqli_query($connection,$sql);
-            $noti = "Record Add 1 Successfully";
-            echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        }else{
           $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `time`, `purposes`, `count_status`, `status`) VALUES  (
 				'".$_POST['user_id']."',
 				'".$_POST['name']."',
@@ -355,7 +341,7 @@ if(isset($_POST['add'])){
             mysqli_query($connection,$add);
             $noti = "Record Add Successfully";
             echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        }
+        
     }else{
         $noti = "Visitation is fully loaded";
         echo '<p style="color:#2cb90a;">'.$noti.'</p>';

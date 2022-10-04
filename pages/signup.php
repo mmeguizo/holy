@@ -140,7 +140,7 @@
                     <button class="btn btn-block btn-lg bg-pink waves-effect"  name="submit" type="submit">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="http://localhost/orphan/pages/index.php">You already have a membership?</a>
+                        <a href="http://localhost:8080/orphan/pages/index.php">You already have a membership?</a>
                     </div>
                 </form>
             </div>
