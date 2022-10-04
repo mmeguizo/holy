@@ -118,27 +118,6 @@ include dirname($path) . "../include/body.php";
 	                                </li>
 	                            </div>
 	                        </a>
-	                        <a href="/tes/pages/dean/profileteacher.php">
-	                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-	                                <li role="presentation">
-	                                    <div class="info-box bg-light-green hover-expand-effect">
-	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
-	                                        </div>
-	                                        <div class="content">
-	                                            <div class="text">Kids</div>
-	                                            <div class="number count-to" data-from="0" data-to="<?php 
-	                                                #$sql = "SELECT COUNT(`id`) FROM `users` WHERE `role` = \'student\'";
-	                                                $sql = "SELECT COUNT(`id`) AS COUNT FROM `users` WHERE `role` = 'teacher' ";
-	                                                $counts = mysqli_query($connection,$sql);
-	                                                $row = mysqli_fetch_assoc($counts);
-	                                                echo $row['COUNT'];?>" data-speed="1000" data-fresh-interval="20">
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </li>
-	                            </div>
-	                        </a>
 	                    </ul>
 	                </div>
 	            </div>
@@ -148,7 +127,7 @@ include dirname($path) . "../include/body.php";
 			    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			        <div class="card">
 			            <div class="header">
-			                <h2>Admin</h2>
+			                <h2>Foster</h2>
 			            </div>
 
 			            <div class="body">
