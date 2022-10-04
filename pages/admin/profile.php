@@ -116,7 +116,7 @@ include dirname($path) . "../include/body.php";
         $id=$_SESSION['id'];
         $update ="UPDATE `users` SET username='".$_POST['username']."', name='".$_POST['name']."', lastname='".$_POST['lastname']."', password='".$_POST['password']."', image='".$post_image."'  where id='".$id."'";
 
-        header("Location:/Orphan/pages/admin/profile.php");
+        header("Location:/orphan/pages/admin/profile.php");
         mysqli_query($connection,$update) or die(mysqli_error());
         $status = "Record add Successfully. </br>";
         echo '<center><p style="color:#FF0000;">'.$status.'</p><center>';

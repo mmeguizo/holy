@@ -5,7 +5,7 @@
 
     if (!$_SESSION['id']) {
       
-       header("Location: http://localhost/Orphan/pages/index.php");
+       header("Location: http://localhost:8080/orphan/pages/index.php");
        die();
     } 
     ?>
@@ -72,7 +72,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <!-- Custom Css -->
     <link href="../../template/css/style.css" rel="stylesheet">
-
+    <link href="../../css/calendar.css" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../../template/css/themes/all-themes.css" rel="stylesheet" />
 </head>
