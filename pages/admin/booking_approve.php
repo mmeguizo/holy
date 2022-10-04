@@ -1,4 +1,4 @@
-<?php 
+l<?php 
 $path = "C:/xampp/htdocs/orphan/pages";
 ?>
 
