@@ -25,7 +25,7 @@ $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
         if($row['date'] === $_POST['date']){
-            $status = 1 + $row['count_status'];s
+            $status = 1 + $row['count_status'];
             $sql  = "UPDATE `services` SET `count_status`= $status WHERE `date`= '".$_POST['date']."'";
             $res = mysqli_query($connection,$sql);
             $noti = "Record Add 1 Successfully";
