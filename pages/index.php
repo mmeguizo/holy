@@ -46,7 +46,6 @@
                       
                       } 
 
-
                       if(!empty($username) && !empty($password)){
 
                                 if($username == $db_username && $password == $db_user_password &&  $db_user_status == 'active'){
