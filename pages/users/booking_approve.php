@@ -25,19 +25,16 @@ $res = mysqli_query($connection,$status_addition);
 $row = mysqli_fetch_assoc($res);
 if(isset($_POST['add'])){
     if($row['count_status'] < 10){
-          echo $add = "INSERT INTO `services`(`user_id`, `name`, `lastname`, `date`, `purposes`, `count_status`, `status`) VALUES   (
+          $add = "INSERT INTO `services`(`user_id`, `date`, `purposes`, `status`) VALUES  (
 				'".$_SESSION['id']."',
-				'".$_SESSION['name']."',
-				'".$_SESSION['lastname']."',
 				'".$_POST['date']."',
 				'".$_POST['purposes']."',
-				'1',
 				'pending'
 				)";
             mysqli_query($connection,$add);
             $noti = "Record Add Successfully";
             echo '<p style="color:#2cb90a;">'.$noti.'</p>';
-        
+			header("location: booking_approve.php");
     }else{
         $noti = "Visitation is fully loaded";
         echo '<p style="color:#2cb90a;">'.$noti.'</p>';
@@ -45,17 +42,23 @@ if(isset($_POST['add'])){
 }
 ?>
 <?php
-    if (isset($_POST['update'])) {
-      $updatedata = "UPDATE `services` SET 
-	   `id`='".$_POST['id']."',
-	   `date`='".$_POST['date']."',
-	   `purposes`='".$_POST['purposes']."',
-	   `status`='".$_POST['status']."'
-       WHERE `id`= '".$_POST['id']."'";
-       mysqli_query($connection,$updatedata) or die(mysqli_error());
+    if (isset($_POST['delete'])) {
+
+		echo($row['id']);
+		echo('clicked delete');
+
+    //   $updatedata = "UPDATE `services` SET 
+	//    `id`='".$_POST['id']."',
+	//    `date`='".$_POST['date']."',
+	//    `purposes`='".$_POST['purposes']."',
+	//    `status`='".$_POST['status']."'
+    //    WHERE `id`= '".$_POST['id']."'";
+    //    mysqli_query($connection,$updatedata) or die(mysqli_error());
        
-       $noti = "Record Updated Successfully";
-       echo '<p style="color:#FF0000;">'.$noti.'</p>';
+       $noti = "Record DeletedUpdated Successfully";
+      echo '<p style="color:#FF0000;">'.$noti.'</p>';
+
+
     }
     if (isset($_POST['delete_booking'])) {
        $updatedata = "DELETE FROM services WHERE `id`= '".$_POST['id']."'";
@@ -84,7 +87,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation" class="active">
 	                                    <div class="info-box bg-light-green hover-expand-effect">
 	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
+	                                            <i class="material-icons">check</i>
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Approve</div>
@@ -104,7 +107,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-cyan hover-expand-effect">
 	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
+	                                            <i class="material-icons">access_time</i>
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Pending</div>
@@ -124,7 +127,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-deep-orange hover-expand-effect">
 	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
+	                                            <i class="material-icons">block</i>
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Cancelled</div>
@@ -144,7 +147,7 @@ if(isset($_POST['add'])){
 	                                <li role="presentation">
 	                                    <div class="info-box bg-blue-grey hover-expand-effect">
 	                                        <div class="icon ">
-	                                            <i class="material-icons">face</i>
+	                                            <i class="material-icons">history</i>
 	                                        </div>
 	                                        <div class="content">
 	                                            <div class="text">Visit History</div>
@@ -220,6 +223,7 @@ if(isset($_POST['add'])){
 											<th>Date</th>
                                             <th>Purpose</th>
                                             <th>Status</th>
+                                            <th>Options</th>
 
                                         </tr>
                                     </thead>
@@ -231,7 +235,12 @@ if(isset($_POST['add'])){
 											<td><?php  echo $row['id']; ?></td>
 											<td><?php  echo $row['date'] ?></td>
                                             <td><?php  echo $row['purposes']; ?></td>
-                                            <td><?php  echo $row['status']; ?></td>
+                                            <td>
+											<button type="button" class="btn btn-<?php  echo $row['status'] == 'Approve' ? 'success' :  ($row['status'] == 'Cancelled' ? 'danger' : 'warning' ) ; ?> waves-effect"><?php  echo $row['status'] == 'Approve' ? 'Approve' :  ($row['status'] == 'Cancelled' ? 'Cancelled' : 'Pending' ) ; ?></button>
+										</td>
+                                            <td>  
+											<button type="button" name="delete" data-id=<?= $row['id'] ?>  <?php  echo $row['status'] == 'Approve' ? 'disabled' :  ($row['status'] == 'Cancelled' ? 'disabled' : '' ) ; ?>  class="btn btn-danger waves-effect deleteBooking"><i class="material-icons"  >delete</i></button>
+											</td>
                                         </tr>
                                         <?php
                                             }
@@ -283,12 +292,42 @@ if(isset($_POST['add'])){
 
 <!-- #END# Exportable Table -->
 <script>
-
+$(document).ready(function() {
+	
 $( function() {
     $( "#datepicker" ).datepicker({
 		dateFormat: "yyyy-mm-dd"
 	});
   } );
+
+
+
+$('.deleteBooking').click(function(){
+	let id = $(this).data('id');
+	
+	let confirmDelete = confirm(`Are you sure you want to delete the Request ID ${id}`);
+
+	confirmDelete ? 
+	$.ajax({
+		url: '../../include/delete.php',
+		type: 'POST',
+		data : {id : id},
+		success : function(res) {
+			alert(res);
+			location.reload();
+		}
+	}) : alert('Error Occured');
+
+});
+
+
+
+})
+
+
+
+
+
 
 
 </script>
